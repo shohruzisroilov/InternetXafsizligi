@@ -1,5 +1,5 @@
 // Screen navigation
-export type Screen = 'intro' | 'learn' | 'quiz' | 'result'
+export type Screen = 'intro' | 'learn' | 'quiz' | 'result' | 'game'
 
 // Lesson (O'rgatuvchi qism)
 export interface Lesson {
@@ -29,6 +29,22 @@ export interface AnswerResult {
   isCorrect: boolean
 }
 
+// Game item for the swipe/sorting game
+export interface GameItem {
+  id: number
+  text: string
+  isSafe: boolean
+  explanation: string
+  emoji: string
+}
+
+// Game play result
+export interface GameResult {
+  itemId: number
+  isCorrect: boolean
+  userChoice: boolean // true = safe, false = dangerous
+}
+
 // App state
 export interface AppState {
   screen: Screen
@@ -37,6 +53,8 @@ export interface AppState {
   score: number
   answers: AnswerResult[]
   isFinished: boolean
+  gameScore?: number
+  gameResults?: GameResult[]
 }
 
 // API response types

@@ -7,6 +7,7 @@ import LandingPage from '@/components/LandingPage'
 import LearnScreen from '@/components/LearnScreen'
 import QuizScreen from '@/components/QuizScreen'
 import ResultScreen from '@/components/ResultScreen'
+import GameScreen from '@/components/GameScreen'
 
 const initialState: AppState = {
   screen: 'intro',
@@ -35,9 +36,18 @@ export default function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
+  const goToGame = useCallback(() => {
+    setState(prev => ({ ...prev, screen: 'game' as Screen, gameScore: 0 }))
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   const handleRestart = useCallback(() => {
     setState(initialState)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  const handleGameScoreChange = useCallback((score: number) => {
+    setState(prev => ({ ...prev, gameScore: score }))
   }, [])
 
   const handleNextLesson = useCallback(() => {
@@ -66,14 +76,14 @@ export default function HomePage() {
       <Header
         mode={isLanding ? 'landing' : 'app'}
         screen={state.screen}
-        score={state.score}
+        score={state.screen === 'game' ? (state.gameScore ?? 0) : state.score}
         totalQuestions={5}
         onLogoClick={handleRestart}
       />
 
       <main className="w-full overflow-x-hidden">
         {isLanding && (
-          <LandingPage onStart={goToLearn} />
+          <LandingPage onStart={goToLearn} onStartGame={goToGame} />
         )}
 
         {state.screen === 'learn' && (
@@ -104,6 +114,16 @@ export default function HomePage() {
               score={state.score}
               answers={state.answers}
               onRestart={handleRestart}
+            />
+          </div>
+        )}
+
+        {state.screen === 'game' && (
+          <div className="pt-16">
+            <GameScreen
+              onRestart={goToGame}
+              onGoHome={handleRestart}
+              onScoreChange={handleGameScoreChange}
             />
           </div>
         )}

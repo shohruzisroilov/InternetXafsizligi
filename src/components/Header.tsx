@@ -31,7 +31,8 @@ export default function Header({
 
   const screenLabel: Record<string, string> = {
     learn:  '📚 Darslar',
-    quiz:   '🎮 O\'yin',
+    quiz:   '📝 Viktorina',
+    game:   '🎮 Kiber O\'yin',
     result: '🏆 Natija',
   }
 
@@ -93,12 +94,12 @@ export default function Header({
             >
               {screenLabel[screen] ?? screen}
             </span>
-            {screen === 'quiz' && (
+            {(screen === 'quiz' || screen === 'game') && (
               <span
                 className="font-black text-base px-4 py-1.5 rounded-xl"
                 style={{ background: '#fde047', color: '#1e293b' }}
               >
-                ⭐ {score}/{totalQuestions}
+                ⭐ {screen === 'quiz' ? `${score}/${totalQuestions}` : `${score} ball`}
               </span>
             )}
           </div>

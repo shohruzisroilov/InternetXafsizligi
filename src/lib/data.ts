@@ -1,4 +1,4 @@
-import { Lesson, Question } from '@/types'
+import { Lesson, Question, GameItem } from '@/types'
 
 export const LESSONS: Lesson[] = [
   {
@@ -103,3 +103,76 @@ export const GRADE_CONFIG = {
     bgColor: 'from-violet-400 to-purple-500',
   },
 } as const
+
+export const GAME_ITEMS: GameItem[] = [
+  {
+    id: 1,
+    text: "M@rv0n#2024! paroli",
+    isSafe: true,
+    explanation: "Kuchli parol: Harflar, raqamlar va maxsus belgilardan iborat hamda kamida 12 belgidan kam emas.",
+    emoji: "🔐"
+  },
+  {
+    id: 2,
+    text: "http://free-robux-now.net havolasi",
+    isSafe: false,
+    explanation: "Xavfli havola! Bepul sovg'a yoki o'yin pullarini va'da qiluvchi havolalar ko'pincha virus yoki firibgarlikdir.",
+    emoji: "🔗"
+  },
+  {
+    id: 3,
+    text: "Begona odam: 'Salom, uy manzilingni yozib yubor'",
+    isSafe: false,
+    explanation: "Begonaga shaxsiy ma'lumotlarni (manzil, telefon, maktab) berish juda xavfli! Hech qachon yozmang.",
+    emoji: "💬"
+  },
+  {
+    id: 4,
+    text: "Shubhali havola kelganda uni ota-onaga ko'rsatish",
+    isSafe: true,
+    explanation: "To'g'ri qaror! Shubhali vaziyatda har doim oilangiz va kattalardan yordam so'rang.",
+    emoji: "👪"
+  },
+  {
+    id: 5,
+    text: "Hamma akkauntlar uchun bitta '123456' paroli",
+    isSafe: false,
+    explanation: "Juda zaif va oson topiladigan parol! Har xil saytlar uchun har xil va murakkab parol yarating.",
+    emoji: "🔑"
+  },
+  {
+    id: 6,
+    text: "https://kun.uz rasmiy yangiliklar sayti",
+    isSafe: true,
+    explanation: "Xavfsiz sayt! Manzilining boshida 'https://' bo'lishi xavfsiz ulanishni bildiradi va u mashhur ishonchli manba.",
+    emoji: "🌐"
+  },
+  {
+    id: 7,
+    text: "Begona kishi: 'Kel uchrashamiz, faqat ota-onangga aytma'",
+    isSafe: false,
+    explanation: "O'ta xavfli! Internetdagi begona odamlar bilan yashirincha uchrashish taqiqlanadi. Ota-onaga xabar bering.",
+    emoji: "👥"
+  },
+  {
+    id: 8,
+    text: "Internetda faqat sevimli rangingiz va multfilmingizni aytish",
+    isSafe: true,
+    explanation: "Xavfsiz ma'lumot. Ranglar va multfilmlar shaxsiy maxfiy ma'lumotlar hisoblanmaydi.",
+    emoji: "🎨"
+  },
+  {
+    id: 9,
+    text: "Telefonga SMS orqali kelgan tasdiqlash kodini begonaga berish",
+    isSafe: false,
+    explanation: "SMS tasdiqlash kodlari maxfiy! Ularni begonaga berish akkauntingiz yoki pulingiz o'g'irlanishiga sabab bo'ladi.",
+    emoji: "📲"
+  },
+  {
+    id: 10,
+    text: "Kompyuterga o'yin yuklashdan oldin kattalardan so'rash",
+    isSafe: true,
+    explanation: "To'g'ri qaror! Noma'lum fayllar ichida virus bo'lishi mumkin. Yuklashdan oldin ruxsat so'rash xavfsiz yo'ldir.",
+    emoji: "🛡️"
+  }
+]

@@ -21,6 +21,7 @@ const getBgType = (emoji: string): 'blue' | 'purple' | 'orange' | 'green' | 'yel
 
 interface LandingPageProps {
   onStart: () => void
+  onStartGame: () => void
 }
 
 const FLOATING_ICONS = [
@@ -178,7 +179,7 @@ function StatCard({ emoji, value, suffix, label, color, delay }:{
   )
 }
 
-export default function LandingPage({ onStart }: LandingPageProps) {
+export default function LandingPage({ onStart, onStartGame }: LandingPageProps) {
   const [mounted, setMounted]         = useState(false)
   const [mousePos, setMousePos]       = useState({ x:0, y:0 })
   const [hoveredIcon, setHoveredIcon] = useState<number|null>(null)
@@ -298,21 +299,19 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             <button onClick={e => { addRipple(e); onStart() }}
               className="ripple-host btn-3d px-10 py-5 rounded-2xl text-xl font-black text-white hover:-translate-y-1.5 transition-all duration-200"
               style={{
+                background:'linear-gradient(135deg, #3b82f6, #2563eb)',
+                boxShadow:'0 8px 0 #1e3a8a, 0 12px 28px rgba(59,130,246,0.4)',
+              }}>
+              Darslarni boshlash 📚
+            </button>
+            <button onClick={e => { addRipple(e); onStartGame() }}
+              className="ripple-host btn-3d px-10 py-5 rounded-2xl text-xl font-black text-white hover:-translate-y-1.5 transition-all duration-200"
+              style={{
                 background:'linear-gradient(135deg, #22c55e, #16a34a)',
                 boxShadow:'0 8px 0 #166534, 0 12px 28px rgba(34,197,94,0.4)',
               }}>
-              Boshlash 🚀
+              Kiber O&apos;yin 🎮
             </button>
-            <a href="#learn"
-              className="px-10 py-5 rounded-2xl text-xl font-black text-center hover:-translate-y-1 transition-all duration-200"
-              style={{
-                background:'rgba(255,255,255,0.7)',
-                color:'#1e293b',
-                border:'3px solid rgba(255,255,255,0.9)',
-                boxShadow:'0 4px 16px rgba(0,0,0,0.08)',
-              }}>
-              Darslarni ko&apos;r 📚
-            </a>
           </div>
         </div>
 
@@ -423,7 +422,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
               {/* Left */}
               <div className="p-8 flex flex-col gap-5" style={{ background:'white' }}>
                 <h3 className="text-2xl font-black" style={{ color:'#1e293b' }}>
-                  🎮 O&apos;yinga tayyor?
+                  📝 Viktorinaga tayyor?
                 </h3>
                 <p className="font-semibold text-base" style={{ color:'#475569' }}>
                   {`${QUESTIONS.length} ta savol. Har to'g'ri javob = ⭐ ball. Oxirida mukofot kutadi! 🏆`}
@@ -447,14 +446,12 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
                 <button
                   onClick={e => { addRipple(e as React.MouseEvent<HTMLButtonElement>); onStart() }}
-                  className="ripple-host btn-3d flex items-center justify-center gap-2
-                    px-8 py-4 rounded-2xl font-black text-lg text-white
-                    hover:-translate-y-1 transition-all duration-200"
+                  className="ripple-host btn-3d flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-black text-lg text-white hover:-translate-y-1 transition-all duration-200"
                   style={{
                     background:'linear-gradient(135deg, #f59e0b, #d97706)',
                     boxShadow:'0 6px 0 #92400e, 0 10px 24px rgba(245,158,11,0.4)',
                   }}>
-                  <span>Boshlash</span>
+                  <span>Viktorinani boshlash</span>
                   <span style={{ animation:'wiggle 1.5s ease-in-out infinite' }}>🚀</span>
                 </button>
               </div>
@@ -486,6 +483,87 @@ export default function LandingPage({ onStart }: LandingPageProps) {
                 </div>
                 <p className="text-xs font-semibold" style={{ color:'#92400e' }}>
                   💡 {QUESTIONS[0].explanation}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Kiber Qalqon Game CTA card */}
+          <div className="rounded-3xl overflow-hidden shadow-lg mt-8"
+            style={{ border:'3px solid #86efac' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2">
+
+              {/* Left */}
+              <div className="p-8 flex flex-col gap-5" style={{ background:'white' }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl">🛡️</span>
+                  <h3 className="text-2xl font-black animate-pulse" style={{ color:'#1e293b' }}>
+                    Kiber Qalqon O&apos;yini
+                  </h3>
+                </div>
+                <p className="font-semibold text-base" style={{ color:'#475569' }}>
+                  Sizga internetdagi har xil vaziyatlar, xabarlar va parollar ko&apos;rsatiladi. Ularni to&apos;g&apos;ri saralang!
+                </p>
+
+                {/* Rules info */}
+                <div className="flex flex-col gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-lg shrink-0 mt-0.5">🟢</span>
+                    <span className="text-xs font-bold text-slate-600">
+                      Xavfsiz ma&apos;lumot yoki to&apos;g&apos;ri harakat bo&apos;lsa ➔ <b>O&apos;ngga suring</b> (yoki yashil tugma)
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-lg shrink-0 mt-0.5">🔴</span>
+                    <span className="text-xs font-bold text-slate-600">
+                      Xavfli vaziyat yoki firibgarlik bo&apos;lsa ➔ <b>Chapga suring</b> (yoki qizil tugma)
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-lg shrink-0 mt-0.5">❤️</span>
+                    <span className="text-xs font-bold text-slate-600">
+                      Jami 3 ta hayot beriladi, adashmaslikka harakat qiling!
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={e => { addRipple(e as React.MouseEvent<HTMLButtonElement>); onStartGame() }}
+                  className="ripple-host btn-3d flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-black text-lg text-white hover:-translate-y-1 transition-all duration-200 animate-glow-green"
+                  style={{
+                    background:'linear-gradient(135deg, #22c55e, #16a34a)',
+                    boxShadow:'0 6px 0 #166534, 0 10px 24px rgba(34,197,94,0.4)',
+                  }}>
+                  <span>O&apos;yinni boshlash</span>
+                  <span style={{ animation:'wiggle 1.5s ease-in-out infinite' }}>🎮</span>
+                </button>
+              </div>
+
+              {/* Right — interactive mock card */}
+              <div className="p-8 flex flex-col items-center justify-center gap-4"
+                style={{ background:'#f0fdf4', borderLeft:'3px solid #86efac' }}>
+                <p className="font-black text-xs uppercase tracking-widest text-emerald-700">
+                  O&apos;yin interfeysi namuna 👇
+                </p>
+                <div className="w-56 aspect-[4/5] bg-white border-2 border-emerald-300 rounded-3xl p-4 flex flex-col justify-between items-center text-center shadow-lg relative hover:scale-105 transition-all duration-300">
+                  <div className="w-full flex justify-between items-center opacity-30 text-[9px] font-bold text-slate-400">
+                    <span>#KiberQalqon</span>
+                    <span>🛡️</span>
+                  </div>
+                  <div className="my-auto flex flex-col items-center">
+                    <span className="text-4xl mb-1.5 animate-bounce">🔐</span>
+                    <p className="font-black text-xs text-slate-800 leading-snug">
+                      M@rv0n#2024! paroli
+                    </p>
+                  </div>
+                  <div className="w-full py-1 rounded-xl text-[8px] font-black bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center gap-0.5">
+                    <span>← Chapga (Xavfli)</span>
+                    <span>|</span>
+                    <span>O&apos;ngga (Xavfsiz) →</span>
+                  </div>
+                </div>
+                <p className="text-[11px] font-semibold text-emerald-700 text-center leading-normal">
+                  💡 Har bir javob uchun 10 balldan beriladi va batafsil tushuntirish ko&apos;rsatiladi!
                 </p>
               </div>
             </div>
